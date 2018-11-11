@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统商品退货</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>商品退货</h4>
+                </div>
+                <div class="text item">
+                    <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                        <el-form-item label="订单号:" size="small">
+                            <el-input v-model="formInline.user" class="productInput"></el-input>
+                        </el-form-item>
+                       
+                        <el-form-item>
+                            <el-button type="success" @click="onSubmit" class="findSub">查询</el-button>
+                        </el-form-item>
+                    </el-form>
+                  
+                </div>
+            </el-card>
+        </el-main>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    formInline: {
+                        user: ''
+                    }
+                }
+            },
+            methods: {
+                onSubmit() {
+                    console.log('submit!');
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

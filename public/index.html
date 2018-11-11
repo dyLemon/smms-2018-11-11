@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统首页</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-container>
+            <!-- 左边 -->
+            <el-aside width="230px">
+                <div class="leftTitle">
+                    <h2>华联超市管理系统</h2>
+                    <p class="leftHello"><span>您好 </span>,{{ nameAdmin}}</p>
+                    <p class="leftManager">
+                        <a href="main.html" target="rightContent">管理首页 |</a>
+                        <a href="#">退出系统</a>
+                    </p>
+                </div>
+                <!-- 左侧导航 -->
+                <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" unique-opened>
+                    <el-submenu index="1">
+                        <template slot="title">
+                            <span>分类管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="1-1">
+                                <a href="/classify_manager.html" target="rightContent">分类管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="1-2">
+                                <a href="/classify_add.html" target="rightContent">添加分类</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="2">
+                        <template slot="title">
+                            <span>商品管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="2-1">
+                                <a href="/comm_manager.html" target="rightContent">商品管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="2-2">
+                                <a href="/comm_add.html" target="rightContent">添加商品</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <span>进货管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="3-1">
+                                <a href="purchase_list.html" target="rightContent">库存管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="3-2">
+                                <a href="#">添加库存</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="4">
+                        <template slot="title">
+                            <span>出货管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="4-1">
+                                <a href="stock_list.html" target="rightContent">销售列表</a>
+                            </el-menu-item>
+                            <el-menu-item index="4-2">
+                                <a href="/stock_outbound.html" target="rightContent">商品出货</a>
+                            </el-menu-item>
+                            <el-menu-item index="4-3">
+                                <a href="stock_return.html" target="rightContent">商品退货</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="5">
+                        <template slot="title">
+                            <span>统计管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="5-1">
+                                <a href="#">销售统计</a>
+                            </el-menu-item>
+                            <el-menu-item index="5-2">
+                                <a href="#">进货统计</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="6">
+                        <template slot="title">
+                            <span>账号管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="6-1">
+                                <!-- target = "" 在指定的地方打开这个文件 -->
+                                <a href="./member_list.html" target="rightContent">账号管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="6-2">
+                                <a href="./member_add.html" target="rightContent">添加账号</a>
+                            </el-menu-item>
+                            <el-menu-item index="6-3">
+                                <a href="./member_edit.html" target="rightContent">密码修改</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="7">
+                        <template slot="title">
+                            <span>会员管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="7-1">
+                                <a href="person_list.html" target="rightContent">账号管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="7-2">
+                                <a href="person_add.html" target="rightContent">添加账号</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+                    <el-submenu index="8">
+                        <template slot="title">
+                            <span>系统管理</span>
+                        </template>
+                        <el-menu-item-group>
+                            <el-menu-item index="8-1">
+                                <a href="#">系统管理</a>
+                            </el-menu-item>
+                            <el-menu-item index="8-2">
+                                <a href="#">系统信息</a>
+                            </el-menu-item>
+                            <el-menu-item index="8-3">
+                                <a href="#">系统配置</a>
+                            </el-menu-item>
+                            <el-menu-item index="6-4">
+                                <a href="#">权限管理</a>
+                            </el-menu-item>
+                        </el-menu-item-group>
+                    </el-submenu>
+
+                </el-menu>
+
+            </el-aside>
+            <!-- 右边 -->
+            <el-container>
+                <el-header height="100px">
+                    <h2>欢迎您 {{nameAdmin}}</h2>
+                    <p>查看详细系统信息</p>
+                </el-header>
+                <!-- 改变的内容区域开始 -->
+                <iframe src="./main.html" frameborder="0" name="rightContent" scrolling="auto" width="100%" height="100%"></iframe>
+                <!-- 改变的内容区域结束 -->
+              
+                <el-footer height="51px">
+                    <p>&copy;Copyright 2018华联超市管理系统</p>
+                </el-footer>
+            </el-container>
+        </el-container>
+
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    nameAdmin:''
+                }
+            },
+            methods: {
+                //左侧导航的打开和关闭
+                handleOpen(key, keyPath) {
+                    // console.log(key, keyPath);
+                },
+                handleClose(key, keyPath) {
+                    // console.log(key, keyPath);
+                }
+            },
+            mounted(){
+                $.get('/users/nameAdmin',(result)=>{
+                    this.nameAdmin = result;
+                })
+            }
+        })
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统添加分类</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>添加管理</h4>
+                </div>
+                <div class="text item">
+                    <el-form :model="ruleForm" size="small" :rules="rules" ref="ruleForm" :label-position="labelPosition" label-width="100px" class="demo-ruleForm">
+                        <el-form-item label="所属分类："  id="classifyAdd" prop="region">
+                            <el-select v-model="ruleForm.region" placeholder="-------顶级分类-------">
+                                <el-option label="区域一" value="shanghai"></el-option>
+                                <el-option label="区域二" value="beijing"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="分类名称：" prop="name">
+                            <el-input v-model="ruleForm.name"></el-input>
+                        </el-form-item>
+                        <el-form-item label="状态：">
+                            <el-radio v-model="radio" label="1">启用</el-radio>
+                            <el-radio v-model="radio" label="2">禁用</el-radio>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="success" @click="submitForm('ruleForm')">添加</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-card>
+        </el-main>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    labelPosition: 'top',
+                    radio: '2',
+                    ruleForm: {
+                        name: '',
+                        region: '',
+                        // status: '',
+                    },
+                    rules: {
+                        name: [
+                            { required: true, message: '请输入活动名称', trigger: 'blur' },
+                            { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+                        ]
+                    }
+                };
+            },
+            methods: {
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+                resetForm(formName) {
+                    this.$refs[formName].resetFields();
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

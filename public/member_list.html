@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统添加管理员</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>账号管理</h4>
+                </div>
+                <div class="text item">
+                    <el-table :data="tableData" style="width: 100%">
+                        <el-table-column label="编号" width="140">
+                            <template slot-scope="scope">
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag size="medium">{{ scope.row.u_id }}</el-tag>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="用户名" width="200">
+                            <!-- slot是vue模块的一个插槽，插槽中的scope属性获取到的是一个对象，{“row":{}} -->
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.userName }}</span>
+                            </template>
+                        </el-table-column>
+                        <!-- 也可以直接使用prop来获取data的数据 -->
+                        <el-table-column label="用户组" width="200" prop="userGroup">
+                        </el-table-column>
+                        <el-table-column prop="createDatetime" label="时间" width="300" :formatter="dateFormat">
+                            <!-- <template slot-scope="scope">
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag size="medium">{{ scope.row.createDatetime }}</el-tag>
+                                </div>
+                            </template> -->
+                        </el-table-column>
+                        <el-table-column label="管理">
+                            <template slot-scope="scope">
+                                <el-button size="mini" @click="handleEdit( scope.row.u_id)" type="success" plain><i class="el-icon-edit"></i></el-button>
+                                <el-button size="mini" type="primary" plain  @click="handleDelete(scope.row.u_id)"><i class="el-icon-delete"></i></el-button>
+                            </template>
+                        </el-table-column>
+                    </el-table>
+                </div>
+            </el-card>
+        </el-main>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入moment日期处理类库 -->
+    <script src="./javascripts/moment-with-locales.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        //    let vueResult =  new Vue({
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    tableData: []
+                }
+            },
+            methods: {
+                handleEdit(index) {
+                    // console.log(index);//拿到id
+                    //跳转页面
+                    location.href="member_update.html?id="+index;
+                    
+                },
+                handleDelete(index) {
+                    // console.log(index);
+                  if(confirm("确定删除嘛")){
+                      $.get('/users/delete', { "delId": index }, (result) => {
+                          if (result.ok) {
+                              alert(result.msg);
+                            //   location.href="member_list.html";
+                            // location.reload();//重新加载页面
+                            //不刷新页面显示页面
+                            this.getlistText();
+                          } else {
+                              alert(result.msg);
+                          }
+                      })
+                  }
+                },
+                //定义一个共用的方法
+               getlistText(){
+                   $.get('/users/list', (result) => {
+                       // console.log(result);//接收到的是一个数组
+                       // vueResult.tableData = result;
+                       // _this.tableData = result;
+                       this.tableData = result; //用箭头函数就直接改变了this指向,执行上下文,指向上一级的this指向---vue实例
+                   })
+               },
+                //日期的格式化
+                dateFormat: function (row, column) {
+                    var date = row[column.property];
+                    if (date == undefined) {
+                        return "";
+                    }
+                    return moment(date).format("YYYY-MM-DD HH:mm:ss");
+                }  
+
+            },
+            mounted() {//挂载视图完后的钩子函数
+                // console.log("这个钩子是在挂载视图完后自动运行");
+                //发送ajax获取数据
+                // //改变this指向,指向vue
+                // let _this = this;
+                //调用共用的
+                this.getlistText();
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>

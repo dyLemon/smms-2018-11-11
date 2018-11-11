@@ -1,0 +1,78 @@
+/* 登录卡片样式 */
+.text {
+    font-size: 14px;
+  }
+
+  .item {
+    margin-bottom: 18px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    width: 480px;
+  }
+  body{
+      background: url("../images/sigin_icon.jpg") no-repeat;
+  }
+
+  /* 自定义的样式 */
+
+  /* 卡片拉伸为居中 */
+  .el-card{
+      background-color: rgba(255, 255, 255, 0.4)!important;
+  }
+  .box-card{
+      height: 300px;
+      position: fixed;
+      top:0;
+      bottom: 0;
+      left:0;
+      right: 0;
+      margin: auto;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.671)!important;
+  }
+  .el-card__header{
+    padding: 4px 20px;
+  }
+  .el-card__header h1{
+      font-size: 20px;
+      color: rgba(22, 21, 21,0.8);
+  }
+  .el-card__header h1 span{
+     background:url("../images/timg.png") no-repeat 8px 10px ;
+     display: inline-block;
+     width: 26px;
+     height: 26px;
+  }
+  /* 去掉验证require,表单自带前*号 */
+.el-form-item.is-required:not(.is-no-asterisk)>.el-form-item__label:before{
+    content:"";
+}
+.item{margin-top:12px;}
+.el-form-item__label{
+    padding: 0px 34px 0 0;
+}
+.el-input{
+    width:88%;
+}
+.el-input__inner{
+    background-color: rgba(255, 255, 255, 0.685)
+}
+.el-button--warning{
+    background-color: rgba(224, 145, 42, 0.6);
+    border-color: rgba(224, 145, 42, 0.6);
+}
+.el-card{
+    border: none;
+}
+.el-button--default{
+    background-color:  rgba(255, 255, 255, 0.685)
+}

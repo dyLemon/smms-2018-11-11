@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统首页</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>系统信息</h4>
+                </div>
+                <div class="text item">
+                    <el-alert title="商品总数：5.已经销售的总金额：890.00.库存商品总价：1235.82" type="warning" show-icon>
+                    </el-alert>
+                    <el-alert title="导入数据" type="warning" :closable="false" show-icon>
+                    </el-alert>
+                    <!-- 销售排行和缺货的商品 -->
+                    <el-row :gutter="22">
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple">
+                                <el-card class="box-card">
+                                    <div slot="header" class="clearfix">
+                                        <h4>销售排行</h4>
+                                    </div>
+                                    <div class="text item">
+                                        <el-table :data="tableData" stripe style="width: 100%">
+                                            <el-table-column prop="date" label="商品名称" width="296">
+                                            </el-table-column>
+                                            <el-table-column prop="name" label="销量" width="160">
+                                            </el-table-column>
+                                        </el-table>
+                                    </div>
+                                </el-card>
+                            </div>
+                        </el-col>
+                        <el-col :span="12">
+                            <div class="grid-content bg-purple-light">
+                                <el-card class="box-card">
+                                    <div slot="header" class="clearfix">
+                                        <h4>缺货的商品</h4>
+                                    </div>
+                                    <el-table :data="tableData" stripe style="width: 100%">
+                                        <el-table-column prop="date" label="商品名称" width="180">
+                                        </el-table-column>
+                                        <el-table-column prop="name" label="操作" width="180">
+                                        </el-table-column>
+                                        <el-table-column prop="address" label="库存">
+                                        </el-table-column>
+                                    </el-table>
+                                </el-card>
+                            </div>
+                        </el-col>
+                    </el-row>
+
+                </div>
+            </el-card>
+        </el-main>
+
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    tableData: [{
+                        date: '2016-05-02',
+                        name: '王小虎',
+
+                    }, {
+                        date: '2016-05-04',
+                        name: '王小虎',
+                    }, {
+                        date: '2016-05-04',
+                        name: '王小虎',
+                    }]
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

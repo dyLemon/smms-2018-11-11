@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统出货管理</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>出货管理</h4>
+                </div>
+                <div class="text item">
+                    <el-form :label-position="labelPosition" :model="ruleForm1" :rules="rules" size="small" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+                        <el-form-item label="商品条形码" prop="barCode">
+                            <el-input v-model="ruleForm.barCode" class="nameInput"></el-input>
+                        </el-form-item>
+
+                        <el-form-item label="数量" prop="number">
+                            <el-input v-model="ruleForm.number" class="productInput"></el-input>
+                            <i>记重商品单价为千克</i>
+                        </el-form-item>
+
+
+                        <el-form-item>
+                            <el-button type="success" @click="submitForm('ruleForm')">加入订单</el-button>
+                            <el-button @click="resetForm('ruleForm')" class="outbound">重新出库</el-tag>
+                        </el-form-item>
+                        <div id="hr"></div>
+                    </el-form>
+                    <!-- 表格 -->
+                    <el-table :data="tableData" stripe style="width: 100%">
+                        <el-table-column label="名称" width="200">
+                            <template slot-scope="scope">
+                                <div slot="reference" class="name-wrapper">
+                                    <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                                </div>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="数量" width="200">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.sell }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="单价(元)" width="200">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.sellPrice }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="总价(元)" width="200">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.bazaaer }}</span>
+                            </template>
+                        </el-table-column>
+                        <el-table-column label="优惠总价(元)" width="200">
+                            <template slot-scope="scope">
+                                <span style="margin-left: 10px">{{ scope.row.bazaaPrice }}</span>
+                            </template>
+                        </el-table-column>
+
+                    </el-table>
+                    <p class="sumResult">
+                        <i>
+                            总价:
+                            <span>0</span>元,
+                        </i>
+                        <i>
+                            优惠:
+                            <span>0</span>元,
+                        </i>
+                        <i class="smallSum">
+                            小计:
+                            <span>0</span>元
+                        </i>
+                    </p>
+                    <div id="hr"></div>
+                    <el-form :label-position="labelPosition" :model="ruleForm1" size="small" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+
+                        <el-form-item label="会员卡号" prop="card">
+                            <el-input v-model="ruleForm1.card" class="productInput"></el-input>
+                            <i>输入会员卡号</i>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="success" @click="submitForm('ruleForm1')">确定提交</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-card>
+        </el-main>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    labelPosition: 'top',
+                    ruleForm: {
+                        barCode: '',
+                        sell: '',
+                        sellPrice: '',
+                        bazaaer: '',
+                        bazaaPrice: ''
+                    },
+                    ruleForm1:{
+                        card:'',
+                    },
+                    tableData: [{
+                        date: '',
+                        name: '',
+                        address: ''
+                    }],
+                    rules: {
+                        barCode: [
+                            { required: true, message: '请选择商品条形码', trigger: 'change' }
+                        ],
+                        number: [
+                            { required: true, message: '请输入数量', trigger: 'change' }
+                        ]
+                    }
+                };
+            },
+            methods: {
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+                
+                resetForm(formName) {
+                   this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

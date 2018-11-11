@@ -1,0 +1,339 @@
+/* 铺满全屏 */
+html,body,#app,.el-container{
+    height: 100%;
+}
+.el-header, .el-footer {
+    color: #333;
+}
+.el-header h2{
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+    line-height: 50px;
+}
+
+  /* 左边 */
+.el-aside {
+    background: url("../images/left_bg.png") repeat-y;  
+}
+.el-aside a{
+  color: #fff;
+}
+/* 左边标题 */
+.leftTitle{
+   color: rgb(194, 194, 194);
+   font-size: 14px;
+   text-align: right;
+   margin-right: 18px;
+}
+.el-aside h2{
+    margin: 50px 0px 40px 0px;
+    font-size: 24px;
+    color: rgb(194, 194, 194);
+}
+
+.leftHello span{
+  color:rgba(204, 204, 204, 0.651);
+}
+.leftManager{
+    margin: 20px 0px 20px 70px; 
+}
+.leftManager a{
+  color:rgb(194, 194, 194);
+}
+.el-menu{
+  border:none;
+
+ 
+  text-align: right;
+  background-color: transparent;
+  
+}
+/* 主导航 */
+.el-submenu{
+  background: url("../images/menu_bg.png") repeat-x;
+  border-radius: 3px 0px 0px 3px;
+  margin-left: 20px;
+}
+/* 字体颜色 */
+.el-submenu__title{
+  color: #fff;
+  width: 210px;
+}
+/* 导航高度 */
+ .el-submenu__title{
+  height: 33px;
+  line-height: 33px;
+}
+/* 主导航移入 */
+.el-submenu__title:hover{
+  background-color: transparent;
+}
+
+.el-submenu__icon-arrow{
+  display: none;
+}
+
+/* 子导航 */
+
+.el-submenu .el-menu-item{
+  height: 33px;
+  line-height: 33px;
+  border-radius: 3px 0px 0px 3px;
+  width: 210px;
+  padding: 0 22px;
+}
+.el-menu-item{
+  position: relative;
+}
+.el-menu-item:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* 鼠标移上有一个小三角 */
+.el-menu-item:hover:after{
+  content: "";
+  display: inline-block;
+  width: 20px;
+  border: 4px solid white;
+  border-color: transparent white transparent transparent ;
+  position: absolute;
+  top:15px;
+  left:182px;
+}
+
+
+.el-menu-item-group__title{
+  display: none;
+}
+.el-menu-item-group{
+  margin-top: 10px;
+}
+.el-menu-item.is-active{
+  background: #fff;
+}
+.el-menu-item.is-active a{
+  color: rgba(255, 102, 0, 0.788);
+}
+
+.el-submenu{
+  margin-bottom: 12px;
+}
+
+
+
+  .el-main {
+    color: #333;
+  }
+  .el-card__header{
+      height: 41px;
+      line-height: 41px;
+      padding: 0 20px;
+      background: url("../images/cardTitleBg.png") repeat-x;
+  }
+  .el-main .el-card__header h4{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .el-alert{
+    margin-bottom: 15px;
+    height: 50px;
+    background: #dbe3ff;
+    border: 1px solid #a2b4ee;
+    color:rgba(0, 0, 0, 0.699);
+  }
+.el-alert__icon{
+    color:#2447ad;
+}
+
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+ .el-container{
+      background-color: rgba(250, 244, 244, 0.918);
+  }
+
+  .el-col {
+    border-radius: 4px;
+  }
+  .bg-purple-dark {
+    background: #99a9bf;
+  }
+  .bg-purple {
+    background: #d3dce6;
+  }
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+  .grid-content {
+    border-radius: 4px;
+    min-height: 36px;
+  }
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+  .el-table td, .el-table th{
+      padding: 6px 0;
+  }
+  .has-gutter tr{
+      width: 430px!important;
+  }
+  .el-footer{
+    font-size: 8px;
+    line-height: 50px;
+  }
+  .el-footer p{
+      border-top: 1px solid #ccc;
+  }
+.el-alert__closebtn{
+    top:20px;
+}
+
+
+
+/* 管理员添加 */
+
+/* 表单框大小 */
+.el-input{
+  width: 50%;
+}
+.el-input--suffix{
+  width: 100%;
+}
+
+
+/*管理员列表  */
+.el-tag{
+  background-color: transparent;
+  border: none;
+  color: rgb(77, 77, 77);
+}
+
+.el-icon-edit:hover{
+  color: rgb(41, 223, 41);
+}
+.el-icon-delete:hover{
+  color: #f60;
+}
+
+/* 分类管理 */
+#classifyAdd .el-input__inner{
+text-indent: 20px;
+}
+
+.code{
+  height: 33px;
+  line-height: 4px;
+  color: #fff;
+  background: url("../images/menu_bg.png") repeat-x;
+}
+.el-button:focus, .el-button:hover{
+  
+  color: #fff;
+}
+ .el-button:active{
+    color: #fff;
+}
+
+.nameInput{
+  width: 400px;
+}
+.productInput{
+  width: 260px;
+}
+/* 商品管理 */
+.el-form-item__content p,.el-form-item__content i{
+  color:rgb(114, 114, 114);
+}
+
+.userInput .el-input{
+  width: 130%;
+}
+
+/* 按钮 */
+.findSub{
+  margin-left: 10px;
+ width: 66px;
+ height: 32px;
+ line-height: 4px;
+ text-align: center;
+ 
+}
+
+.produText{
+  line-height: 40px;
+   color:rgb(114, 114, 114);
+   margin-left: 60px;
+}
+
+#hr{
+  height: 2px;
+  background: #ccc;
+  border: #333
+}
+
+.el-pager .number{
+  background:url("../images//menu_bg.png") repeat-x;
+  color:white;
+  border-radius: 4px;
+  margin:0px 10px;
+}
+/* 商品管理表格列表 */
+.el-pager li.active{
+  color:white;
+}
+.el-pager li:hover{
+  color: white;
+}
+.el-pagination{
+  padding: 38px 5px;
+}
+
+/* 商品出库 */
+.outbound{
+  font-size: 16px;
+  color:rgb(2, 180, 2);
+}
+
+/* 总价 */
+.sumResult{
+   color:rgb(114, 114, 114);
+   margin-top: 20px;
+   margin-bottom: 20px;
+}
+.sumResult .smallSum{
+  color:red;
+}
+
+/* 出库列表 */
+.stockbtn{
+  margin-top: 20px;
+}
+.stockI{
+  color:rgb(114, 114, 114);
+  line-height:40px;
+  font-size: 14px;
+}
+.cell>span{
+    margin: 0!important;
+}
+.uname .el-form-item__label{
+  margin-top: -10px;
+  margin-left: 10px;
+}
+.uname .el-input--small{
+  margin-left:-70px;
+  margin-top: 20px;
+}
+.uname .el-form-item__error,.ucard .el-form-item__error{
+  margin-left: -60px;
+}
+.ucard .el-form-item__label{
+  margin-top:-4px;
+  margin-left: 20px;
+}
+.ucard .el-input--small{
+  margin-top: 30px;
+  margin-left: -80px;
+}

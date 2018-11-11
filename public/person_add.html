@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统添加会员</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css">
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- index.css -->
+    <link rel="stylesheet" href="./stylesheets/index.css">
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-main>
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <h4>添加会员账号</h4>
+                </div>
+                <div class="text item">
+                    <el-form size="small" :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+                       <div class="udiv">
+                            <el-form-item label="真实姓名" class="uname" prop="name">
+                                <el-input v-model="ruleForm.name"></el-input>
+                            </el-form-item>
+                            <el-form-item label="会员卡卡号" prop="card" class=" ucard">
+                                <el-input v-model="ruleForm.card"></el-input>
+                            </el-form-item>
+                       </div>
+                        <el-form-item label="用户组" prop="region">
+                            <el-select v-model="ruleForm.region" placeholder="请选择">
+                                <el-option label="普通会员-99%" value="shanghai"></el-option>
+                                <el-option label="区域二" value="beijing"></el-option>
+                            </el-select>
+                        </el-form-item>
+                        <el-form-item label="身份证" prop="IDcard">
+                            <el-input v-model="ruleForm.IDcard"></el-input>
+                        </el-form-item>
+                        <el-form-item label="用户状态" prop="resource">
+                            <el-radio-group v-model="ruleForm.resource">
+                                <el-radio label="禁用"></el-radio>
+                                <el-radio label="启用"></el-radio>
+                            </el-radio-group>
+                        </el-form-item>
+                        <el-form-item label="手机号码" prop="phoneNum">
+                            <el-input v-model="ruleForm.phoneNum"></el-input>
+                        </el-form-item>
+                        <el-form-item label="座机号码" prop="landlineNum">
+                            <el-input v-model="ruleForm.landlineNum"></el-input>
+                        </el-form-item>
+                        <el-form-item label="邮箱地址" prop="email">
+                            <el-input v-model="ruleForm.email"></el-input>
+                        </el-form-item>
+                        <el-form-item label="地区选择" prop="selectedOptions">
+                            <div class="block">
+                                <el-cascader :options="options" v-model="ruleForm.selectedOptions" @change="handleChange">
+                                </el-cascader>
+                            </div>
+                        </el-form-item>
+                        <el-form-item label="详细地址" prop="address">
+                            <el-input v-model="ruleForm.address"></el-input>
+                        </el-form-item>
+                        <el-form-item label="邮政编码" prop="postal">
+                            <el-input v-model="ruleForm.postal"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="success" @click="submitForm('ruleForm')">添加</el-button>
+                        </el-form-item>
+                    </el-form>
+
+                </div>
+            </el-card>
+        </el-main>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        new Vue({
+            el: '#app',//挂载view
+            data() {
+                return {
+                    options: [{
+                        value: 'zhinan',
+                        label: '指南',
+                        children: [{
+                            value: 'shejiyuanze',
+                            label: '设计原则',
+                            children: [{
+                                value: 'yizhi',
+                                label: '一致'
+                            }, {
+                                value: 'fankui',
+                                label: '反馈'
+                            }, {
+                                value: 'xiaolv',
+                                label: '效率'
+                            }, {
+                                value: 'kekong',
+                                label: '可控'
+                            }]
+                        }, {
+                            value: 'daohang',
+                            label: '导航',
+                            children: [{
+                                value: 'cexiangdaohang',
+                                label: '侧向导航'
+                            }, {
+                                value: 'dingbudaohang',
+                                label: '顶部导航'
+                            }]
+                        }]
+                    }, {
+                        value: 'zujian',
+                        label: '组件',
+                        children: [{
+                            value: 'basic',
+                            label: 'Basic',
+                            children: [{
+                                value: 'layout',
+                                label: 'Layout 布局'
+                            }, {
+                                value: 'color',
+                                label: 'Color 色彩'
+                            }, {
+                                value: 'typography',
+                                label: 'Typography 字体'
+                            }, {
+                                value: 'icon',
+                                label: 'Icon 图标'
+                            }, {
+                                value: 'button',
+                                label: 'Button 按钮'
+                            }]
+                        },]
+                    }],
+                    selectedOptions: [],
+                    selectedOptions2: [],
+
+                    ruleForm: {
+                        name: '',
+                        card: '',//卡号
+                        region: '',//用户组
+                        IDcard: '',//身份证
+                        resource: '启用',//用户状态
+                        phoneNum: '',//手机号码
+                        landlineNum: '',//座机号码
+                        email: '',//邮箱地址
+                        selectedOptions: '',
+                        address: '',
+                        postal: ''
+                    },
+                    rules: {
+                        name: [
+                            { required: true, message: '请输入真实姓名', trigger: 'blur' },
+                            { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }
+                        ],
+                        card: [
+                            { required: true, message: '请输入会员卡卡号', trigger: 'blur' }
+                        ],
+                        region: [
+                            { required: true, message: '请选择用户组', trigger: 'change' }
+                        ],
+                        IDcard: [
+                            { required: true, message: '请输入身份证号', trigger: 'blur' },
+                            { min: 15, max: 18, message: '请输入正确的身份证', trigger: 'blur' }
+                        ],
+                        phoneNum: [
+                            { required: true, message: '请输入手机号码', trigger: 'blur' },
+                            { min: 11, max: 11, message: '请输入正确的手机号', trigger: 'blur' }
+                        ],
+                        landlineNum: [
+                            { min: 6, max: 11, message: '请输入正确的座机号', trigger: 'blur' },
+                        ],
+                        email: [
+                            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                            { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+                        ],
+                        selectedOptions: [
+                            { required: true, message: '请选择地区', trigger: 'blur' }
+                        ],
+                        address: [
+                            { required: true, message: '请输入地址', trigger: 'blur' }
+                        ],
+                        postal: [
+                            { required: true, message: '请输入邮政编码', trigger: 'blur' },
+                            { min: 6, max: 6, message: '请输入正确的邮政编码', trigger: 'blur' }
+                        ],
+                    }
+                };
+            },
+            methods: {
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            alert('submit!');
+                        } else {
+                            console.log('error submit!!');
+                            return false;
+                        }
+                    });
+                },
+                resetForm(formName) {
+                    this.$refs[formName].resetFields();
+                },
+                handleChange(value) {
+                    console.log(value);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>超市管理系统管理员登录</title>
+    <!-- 引入elementUI -->
+    <link rel="stylesheet" href="./stylesheets/elementUI.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="./stylesheets/signin.css">
+</head>
+
+<body>
+    <!-- view -->
+    <div id="app">
+        <el-card class="box-card">
+            <div slot="header" class="clearfix">
+                <h1><span></span> 超市管理系统管理员登录</h1>
+            </div>
+            <!-- 登录框 -->
+            <div class="text item">
+                <el-form :model="ruleForm2" status-icon :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+                    <el-form-item label="用户名" prop="username">
+                        <el-input type="text" v-model="ruleForm2.username" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="密码" prop="checkPass">
+                        <el-input type="password" v-model="ruleForm2.checkPass" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="warning" @click="submitForm('ruleForm2')">登录</el-button>
+                        <el-button @click="resetForm('ruleForm2')">重置</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+        </el-card>
+    </div>
+    <!-- 引入jquery -->
+    <script src="./javascripts/jquery.js"></script>
+    <!-- 引入vue -->
+    <script src="./javascripts/vue.min.js"></script>
+    <!-- 引入elementUI -->
+    <script src="./javascripts/elementUI.js"></script>
+    <script>
+        //实例化Vue
+        new Vue({
+            el: '#app',//挂载dom
+            data() {
+                return {
+                    ruleForm2: {
+                        username: '',
+                        checkPass: '' 
+                    },
+                    //验证规则
+                    rules2: {
+                        username: [
+                            { required: true, message: '请输入用户名', trigger: 'blur' },
+                            { min: 5, max: 10, message: '用户名长度在 5~10', trigger: 'blur' }
+                        ],
+                        checkPass: [
+                            { required: true, message: '请输入密码', trigger: 'blur' },
+                            { min: 6, max: 12, message: '密码长度在 6~12', trigger: 'blur' }
+                        ]
+                    }
+                };
+            },
+            methods: {
+                //提交
+                submitForm(formName) {
+                    this.$refs[formName].validate((valid) => {
+                        if (valid) {
+                            //获取数据发送ajax
+                            let formDate = this.ruleForm2;
+                            $.post('/users/signin',formDate,(result)=>{
+                                // console.log(result);
+                                if(result.ok){
+                                    alert(result.msg);
+                                    location.href="index.html";
+                                }else{
+                                  alert(result.msg);
+                                   this.ruleForm2 = {
+                                        username: '',
+                                        checkPass: ''
+                                    }
+                                }
+                            })
+                            // alert('登录成功');
+                        } else {
+                            console.log('登录失败');
+                            return false;
+                        }
+                    });
+                },
+                //重置
+                resetForm(formName) {
+                    this.$refs[formName].resetFields();
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
